@@ -1,0 +1,19 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: mvn package
+  displayName: 'Build Project'
+
+- script: |
+    mkdir deployed
+    cp target/*.jar deployed/
+    echo "Deployment successful"
+  displayName: 'Simulate Deployment'
+
+- script: |
+    ls deployed
+  displayName: 'Verify Deployment'
